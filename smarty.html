@@ -37,7 +37,7 @@
   <p>Иногда требуется с помощью шаблонизатора Smarty создать элемент после определенного повтора foreach. Например, после каждого четвертого элемента вывода, при этом он не должен быть последним, вставлять див с чертой. Делается это вот так:</p>
 
   <pre>
-    <code class="brush:html">
+    <code class="html">
       {if $smarty.foreach.3new.iteration %4 == 0 && !$smarty.foreach.3new.last} 
           <div class="main_news_line"></div>
       {/if}
