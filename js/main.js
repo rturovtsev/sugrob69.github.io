@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
     $('#content').on('click', '#t_menu li', function(){
         var link = $(this).attr('class');
-        var tem;
+        var tem, temlink;
 
         switch (link.charAt(0)) {
             case 'j':
@@ -13,6 +13,8 @@ $( document ).ready(function() {
                 break;
         }
 
-        $('.content').load(tem link);
+        temlink = tem + " ." + link;
+
+        $('.content').load(temlink);
     });
 });
