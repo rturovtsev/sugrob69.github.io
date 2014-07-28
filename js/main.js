@@ -13,7 +13,7 @@ $( document ).ready(function() {
                 break;
         }
 
-        temlink = tem + " ." + link;
+        temlink = tem + " #" + link;
 
         $('.content').load(temlink);
     });
