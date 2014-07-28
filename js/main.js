@@ -9,7 +9,8 @@ $( document ).ready(function() {
                 // произошла ошибка
                 alert('Произошла ошибка.');
             } else {
-                $('.content').append(data);
+                var menu = $(data).find('#t_menu').html();
+                $('.content').append(menu);
             }
         }
     });
