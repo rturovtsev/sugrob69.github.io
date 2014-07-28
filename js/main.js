@@ -37,7 +37,7 @@ $( document ).ready(function() {
         temlink = tem + " #" + link;
 
         $('.content').load(temlink, function(){
-            $('pre code').each(function(i, block) {
+            $('pre').each(function(i, block) {
                 hljs.highlightBlock(block);
             });
         });
