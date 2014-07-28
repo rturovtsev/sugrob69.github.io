@@ -36,7 +36,9 @@ $( document ).ready(function() {
 
         temlink = tem + " #" + link;
 
-        $('.content').load(temlink);
+        $('.content').load(temlink, function(){
+            hljs.initHighlightingOnLoad();
+        });
         $('a', '.breadcrumbs').text(name);
     });
 });
