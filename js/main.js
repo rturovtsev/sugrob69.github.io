@@ -10,6 +10,7 @@ $( document ).ready(function() {
 
     $('#content').on('click', '#t_menu li', function(){
         var link = $(this).attr('class');
+        var name = $(this).text();
         var tem, temlink;
 
         switch (link.charAt(0)) {
@@ -30,5 +31,6 @@ $( document ).ready(function() {
         temlink = tem + " #" + link;
 
         $('.content').load(temlink);
+        $('a', '.breadcrumbs').text(name);
     });
 });
