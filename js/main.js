@@ -37,9 +37,13 @@ $( document ).ready(function() {
         temlink = tem + " #" + link;
 
         $('.content').load(temlink, function(){
-            $('pre').each(function(i, block) {
-                hljs.highlightBlock(block);
-            });
+            // $('pre').each(function(i, block) {
+            //     hljs.highlightBlock(block);
+            // });
+
+            // $('pre code').each(function(i, block) {
+            //     hljs.highlightBlock(block);
+            // });
         });
         $('a', '.breadcrumbs').text(name);
     });
