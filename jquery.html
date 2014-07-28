@@ -1,0 +1,352 @@
+<div id="t_menu">
+  <ul>
+    <li>Перехват события изменения размера окна браузера</li>
+    <li>Редирект в зависимости от размера экрана</li>
+    <li>Перехват события изменения размера окна браузера</li>
+    <li>Проверить спрятан/показан ли элемент с помощью JQuery</li>
+    <li>Посчитать количество элементов с помощью JQuery</li>
+    <li>Простые и универсальные вкладки (табы) с помощью JQuery</li>
+    <li>Выравнивание высоты div блоков по самому большому</li>
+    <li>Скрытие элемента при клике вне его области с помощью JQuery</li>
+    <li>Поиск слов или параметров в url страницы сайта с помощью JQuery</li>
+  </ul>
+</div>
+
+<div id="j1">
+  <p>Перехват события изменения размера окна браузера. Работает в режиме реального времени, а не только после загрузки страницы.</p>
+  <pre class="brush:js">$(window).bind("load resize", function(){
+    //здесь размещается код
+  });
+  </pre>
+</div>
+
+
+<div id="j2">
+  <p>Скрипт определяет размер экрана (не размер окна браузера!) и при определенных размерах (в данном примере при высоте и ширине менее 640px) перекидывает на другую страницу (например на мобильную версию сайта). В истории браузера первоначальная страница не будет записана.</p>
+  <pre class="brush:js">
+  var m_width = (screen.width);
+  var m_height = (screen.height);
+  if ((m_width < 640) || (m_height < 640)){
+    window.location.replace("m_index.html");
+  }
+  </pre>
+</div>
+
+
+<div id="j3">
+  <p>Скрипт в режиме реального времени определяет размер окна браузера (не размер экрана!) и при определенных размерах (в данном примере при ширине менее 610px) перекидывает на другую страницу (например на мобильную версию сайта). В истории браузера первоначальная страница не будет записана.</p>
+  <pre class="brush:js">
+  $(window).bind("load resize", function(){
+      if ($(window).width() <= '610'){
+          window.location.replace("m_index.html");
+      }
+  });
+  </pre>
+</div>
+
+
+<div id="j4">
+  <p>Проверка элемента на видимость с помощью JQuery</p>
+  <pre class="brush:js">
+  if($(element).is(":hidden")) { ...}
+  if($(element).is(":visible")) { ...}
+  </pre>
+</div>
+
+
+<div id="j5">
+  <p>Посчитать количество элементов на странице с помощью JQuery</p>
+  <pre class="brush:js">
+  var number_of_LI = jQuery('ul.some li').size();
+  </pre>
+</div>
+
+
+<div id="j6">
+  <p>Простой способ создания универсальных вкладок(табов) на JQuery. Код поддерживает любое количество вкладок. При добавлении новых вкладок в html, никаких правок в код JQuery вносить не нужно, они будут подхватываться автоматически.</p>
+
+  <p>Пример как это все работает:</p>
+  <style>
+  .primer_area {  
+    width: 500px;
+    padding: 40px; 
+    margin: 0 auto; 
+    overflow: hidden;  
+    border: 1px solid #ccc; 
+    border-radius: 8px;
+    background: #F7F7F7; 
+  }
+  .primer {
+    width: 306px; 
+    margin: 0 auto;
+  }
+  #tab_btns {
+    width: 321px; 
+    height: 38px;
+  }
+    #tab_btns div {
+      float: left; 
+      width: 100px; 
+      padding: 11px 0; 
+      margin-right:5px;   
+      text-align: center;
+      color: white;  
+      font-weight: bold; 
+      border: 1px solid #6DA1F3; 
+      border-bottom: 0; 
+      border-radius: 4px 4px 0 0; 
+      background: #7E9FE0;    
+      cursor: pointer;
+    }
+    #tab_btns .active {    
+      color:#7e7e7e; 
+      border-bottom: 0;
+      background: #fff;
+    }
+  #cont {
+    width: 314px; 
+    height: 200px; 
+    border: 1px solid #6DA1F3; 
+    background: #fff;
+  }
+    #cont .area {
+      height: 130px; 
+      padding-top: 70px; 
+      text-align: center;
+    }
+      #cont .area span {
+        color:red;
+      }
+    #cont .hide {
+      display: none;
+    } 
+  </style>
+
+  <div class="primer_area">
+    <div class="primer">
+      <div id="tab_btns">
+        <div class="btn1 active" data-id="1">Таб 1</div>
+        <div class="btn2" data-id="2">Таб 2</div>
+        <div class="btn3" data-id="3">Таб 3</div>
+      </div>
+      <div id="cont">
+        <div class="area area_1">
+          Поле <span>первой</span> вкладки
+        </div>
+        <div class="area area_2 hide">
+          Поле <span>второй</span> вкладки
+        </div>
+        <div class="area area_3 hide">
+          Поле <span>третьей</span> вкладки
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    jQuery(document).ready(function($) {
+      $('#tab_btns > div').click(function(){
+      var data_id = $(this).attr('data-id');
+      $('#tab_btns > div').each(function(){
+          $(this).removeClass('active');
+      });
+      $('#tab_btns .btn'+data_id).addClass('active');
+      $('#cont .area').each(function(){
+          $(this).addClass('hide');
+      });
+      $('#cont .area_'+data_id).removeClass('hide');
+  });
+    });
+  </script>
+
+  <p>Код JQuery</p>
+  <pre class="brush:js">
+  $('#tab_btns > div').click(function(){  //перехватываем клик по вкладке
+    var data_id = $(this).attr('data-id'); //сохряняем data-id этой вкладки в переменную data_id
+    $('#tab_btns > div').each(function(){  //перебираем все вкладки
+      $(this).removeClass('active');  //удаляем класс active у всех вкладок
+      });
+    $('#tab_btns .btn'+data_id).addClass('active');  //добавляем класс active вкладке, по которой мы кликнули
+    $('#cont .area').each(function(){  //перебираем все поля от вкладок
+      $(this).addClass('hide');  //скрываем все поля, добавив каждому класс hide
+      });
+    $('#cont .area_'+data_id).removeClass('hide'); // показываем нужное нам поле, удалив у него класс hide
+  });
+  </pre>
+
+  <p>Код HTML для примера с тремя вкладками</p>
+  <pre class="brush:html">
+  <div id="tab_btns">
+    <div class="btn1 active" data-id="1">Таб 1</div>
+    <div class="btn2" data-id="2">Таб 2</div>
+    <div class="btn3" data-id="3">Таб 3</div>
+  </div>
+  <div id="cont">
+    <div class="area area_1">
+      Поле <span>первой</span> вкладки
+    </div>
+    <div class="area area_2 hide">
+      Поле <span>второй</span> вкладки
+    </div>
+    <div class="area area_3 hide">
+      Поле <span>третьей</span> вкладки
+    </div>
+  </div>
+  </pre>
+
+  <p>Код CSS (для оформления как в примере, можно использовать свой)</p>
+  <pre class="brush:css">
+  #tab_btns {width: 321px; height: 38px;}
+    #tab_btns div {float: left; width: 100px; padding: 11px 0; margin-right:5px; text-align: center;color: white; font-weight: bold; border: 1px solid #6DA1F3; border-bottom: 0; border-radius: 4px 4px 0 0; background: #7E9FE0; cursor: pointer;}
+    #tab_btns .active {color:#7e7e7e; border-bottom: 0; background: #fff;}
+  #cont {width: 314px; height: 200px; border: 1px solid #6DA1F3; background: #fff;}
+    #cont .area {height: 130px; padding-top: 70px; text-align: center;}
+      #cont .area span {color:red;}
+    #cont .hide {display: none;}
+  </pre>
+</div>
+
+
+<div id="j7">
+  <p>Выровнять блоки по высоте можно только с использованием табличной верстки, на чистом css это невозможно. Данный метод показывает как легко решить эту проблему с помощью пары строк JQuery.</p>
+  <pre class="brush:js">
+  var maxHeight = 0;  //созданм переменную maxHeight 
+  $("div").each(function(){  //пробегаем все нужные блоки div
+    if ($(this).height() > maxHeight) { //сравниваем высоту каждого блока, если она бошльше значения переменной maxHeight, то 
+      maxHeight = $(this).height();  //присваиваем её этой переменной, так найдем самое большое значение
+    }
+  }); 
+  $("div").height(maxHeight); //выставляем высоту всех блоков, равную нашей переменной maxHeight
+  </pre>
+</div>
+
+
+<div id="j8">
+  <p>Вот суть решения - назначаем на странице обработчик всех кликов OnClick. В том же обработчике, в переменной event.target и выявится элемент, на котором посетитель произвел клик. С помощью jQuery-метода closest() выясняем, где произошёл клик — на самом элементе или вне элемента. Во втором случае скрываем элемент.</p>
+  <p>Пример работы скрипта:</p>
+
+  <div class="primer_area">
+      <div class="primer">
+          <div><a href="#" id="demo-link">Щелкни на меня</a></div>
+          <div id="demo-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, provident!</div>
+      </div>
+  </div>
+  <style>
+  .primer_area {  
+      width: 500px;
+    height:70px;
+      padding: 40px; 
+      margin: 0 auto; 
+      overflow: hidden;    
+      border: 1px solid #ccc; 
+      border-radius: 8px;
+      background: #F7F7F7; 
+  }
+  .primer {
+      width: 306px; 
+      margin: 0 auto;
+  }
+  #demo-text {
+      width: 300px;
+      background: #FFF;
+      border-radius: 10px;
+      box-shadow: 1px 1px 3px #B1B1B1;
+      padding: .1em 1.5em;
+      margin: .5em 0;
+      text-align: justify;
+      text-indent: 15px;
+      border: solid 1px #CCC;
+  }
+   
+   #demo-link {
+      text-decoration: none;
+      border-bottom: 1px dashed;
+  }
+  </style>
+  <script>
+      $(document).ready(function() {
+            $(function () {
+      $('#demo-text').hide();
+      $('#demo-link').click(function (e) {
+        var $message = $('#demo-text');
+   
+        if ($message.css('display') != 'block') {
+          $message.show();
+   
+          var yourClick = true;
+          $(document).on('click.myEvent', function (e) {
+            if (!yourClick && $(e.target).closest('#demo-text').length == 0) {
+              $message.hide();
+              $(document).off('click.myEvent');
+            }
+            yourClick = false;
+          });
+        }
+   
+        e.preventDefault();
+      });
+    });
+      });
+  </script>
+
+
+
+  <p>Код JQuery:</p>
+  <pre class="brush:js">
+    $(function () {
+      $('#demo-text').hide();
+      $('#demo-link').click(function (e) {
+        var $message = $('#demo-text');
+   
+        if ($message.css('display') != 'block') {
+          $message.show();
+   
+          var yourClick = true;
+          $(document).on('click.myEvent', function (e) {
+            if (!yourClick && $(e.target).closest('#demo-text').length == 0) {
+              $message.hide();
+              $(document).off('click.myEvent');
+            }
+            yourClick = false;
+          });
+        }
+   
+        e.preventDefault();
+      });
+    });
+  </pre>
+
+  <p>Код CSS:</p>
+  <pre class="brush:css">
+  #demo-text {
+      width: 300px;
+      background: #FFF;
+      border-radius: 10px;
+      box-shadow: 1px 1px 3px #B1B1B1;
+      padding: .1em 1.5em;
+      margin: .5em 0;
+      text-align: justify;
+      text-indent: 15px;
+      border: solid 1px #CCC;
+  }
+   
+  #demo-link {
+     text-decoration: none;
+     border-bottom: 1px dashed;
+  }
+  </pre>
+</div>
+
+
+<div id="j9">
+  <p>Иногда необходимо проверить ссылку страницы сайта на содержание определенных слов или параметров, например, чтобы подсветить соответствующий пункт в меню. Для этого подойдет вот такой простой скрипт:</p>
+  <pre class="brush:js">
+  var url = window.location.href;  //сохраняем в переменную текущую ссылку из адресной строки браузера
+
+  //проверяем адрес на содержание нужных нам слов или параметров
+  if (urlForLM.search("/initiative/") > 0) {
+      $('.a_initiative').addClass('selected');
+  } else if (urlForLM.search("/comment/") > 0) {
+      $('.a_comment').addClass('selected');
+  }
+  </pre>
+</div>
