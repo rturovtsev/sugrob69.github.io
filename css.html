@@ -1,0 +1,711 @@
+<div id="t_menu">
+  <ul>
+    <li class="c1">Как с помощью css прижать футер к низу окна браузера</li>
+    <li class="c2">Список CSS и HTML хаков для всех браузеров</li>
+    <li class="c3">Правило @media для CSS. Задание стилей под определенные устройства или разрешения экрана</li>
+    <li class="c4">Верстка геометрических фигур на чистом css</li>
+  </ul>
+</div>
+
+<div id="c1">
+    <p>100% рабочий и простой способ на CSS как прижать футер к низу окна браузера.<br> Footer прижимается вниз за счет вытягивания блока wrapper на всю высоту окна браузера и подъема футера вверх через отрицательный отступ для избавления от появляющегося при этом вертикального скролла. В данном случае нужно обязательно указывать высоту подвала. Внутри блока wrapper нужно разместить блок push с высотой, равной высоте подвала. Это необходимо для того, чтобы footer не наползал на контент при уменьшении окна браузера.</p>
+
+    <p>Код HTML:</p>
+
+    <pre class="brush:html">
+    <div class="wrapper">
+        <div class="header"></div>
+        <div class="content"></div>
+        <div class="push"></div>
+    </div>
+    <div class="footer"></div>
+    </pre>
+
+    <p>Код CSS:</p>
+    <pre class="brush:css">* {
+        margin: 0;
+        padding: 0;
+    }
+    html, body {
+        height: 100%;
+    }
+    .wrapper {
+        min-height: 100%;
+    }
+
+    .header {
+        height: 190px;
+    }
+    .footer, .push {
+        height: 140px; 
+    }
+
+    .footer {
+        height: 140px;
+        margin-top:-140px;
+    }
+    </pre>
+</div>
+
+<div id="c2">
+    <h2>Список хаков для всех браузеров.</h2>
+
+    <p>CSS хаки для E6, IE7, IE8, FireFox, Opera, Safari, Chrome<p>
+    <pre class="brush:css">
+    /* хак только для  IE8 Only */
+    .myClass  { 
+         color:red\0/; /* красный */
+         padding:70px\0/; /* отступ 70px только для Internet Explorer 8 */
+    }
+
+    /* IE 6 Only */
+    * html .myClass {
+        ...
+    } 
+
+    /* All except IE6 standards */
+    .myClass { 
+        property /**/: value; 
+    } 
+
+    /* Firefox & IE 7, и выше */
+    html>body .myClass {
+        ...
+    }
+
+    /* Modern browsers only (not IE 7) */
+    html>/**/body .myClass {
+        ...
+    }
+
+    /* IE 7 Only */
+    *:first-child+html .myClass {
+       ...
+    }
+
+    /* Firefox Only */
+    @-moz-document url-prefix() {
+        .myClass {
+            ...
+        }
+    }
+
+    /* Opera Only */
+    noindex:-o-prefocus, .MyClass {
+        color:red;
+    }
+
+    /* IE7 Only */
+    div[class^="myClass"] .myClass2 { 
+        ...
+    }
+
+    /* IE7 only */
+    *+html .myClass { 
+        ...
+    } 
+
+    /* hack for Opera <=9 */
+    html:first-child .myClass {
+        ...
+    } 
+
+    /* Firefox, Opera, Konqueror, Safari */
+    *|html .myClass { 
+        ...
+    }
+
+    /* IE8 beta 2 only (?)*/
+    html:first-child .myClass [attr|=a-b] { 
+        ...
+    } 
+
+    /* RGBA in IE8 */
+    .someclass {
+        background: rgba(255, 255, 255, 0.3); /* browsers */
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#4cffffff', endColorstr='#4cffffff'); /* IE */
+        //альфа-каналом является первая пара в HEX значении
+        //0% = #00
+        //10% = #16
+        //20% = #32
+        //30% = #48
+        //40% = #64
+        //50% = #80
+        //60% = #96
+        //70% = #112
+        //80% = #128
+        //90% = #144
+    }
+
+    /* IE5/Mac only */
+    /*\*//*/ .myClass { property: value; } /**/ 
+
+    /* Gecko only */
+    .myClass:not([attr*=""]) { 
+        ...
+    } 
+
+    /* Opera 
+    @media all and (min-width: 0px) { 
+        html:first-child .myClass { 
+            ...
+        } 
+    } 
+
+    /* Safari only */
+    .myClass:not(:root:root) { 
+        ...
+    } 
+
+    /* Safari 3.0 and Chrome only */
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        .myClass {
+                 ....
+        }
+    }
+
+    /* Chrome browser  */
+    body:nth-of-type(1) .myClass {
+           ...
+    }
+
+    /* Safari browser  css hack */
+    body:first-of-type .myClass {property:value;}
+
+
+    </pre>
+
+    <p>Хаки для IE, код вставлять в html файл.</p>
+    <pre class="brush:html">
+    <!--[if IE]> 
+        ... если Internet Explorer ..
+        <link href="ie-fix.css" type="text/css" rel="stylesheet"> 
+    <![endif]--> 
+
+    <!--[if IE 6.0]> 
+        ... если IE6 
+    <![endif]--> 
+        
+    <!--[if IE 7]> 
+        ... если IE7
+    <![endif]--> 
+
+    <!--[if gte IE 5]> 
+        ... если IE5+
+    <![endif]--> 
+
+    <!--[if lt IE 6]> 
+        .. если ниже IE 6
+    <![endif]--> 
+
+    <!--[if lte IE 5.5]> 
+        ... если ниже или равно IE 5.5 
+    <![endif]--> 
+
+    <!--[if gt IE 6]> 
+        ... если выше IE 6 
+    <![endif]-->
+    </pre>
+</div>
+
+<div id="c3">
+    <h2>Краткая информация</h2>
+    <br>
+    <p>Правило @media позволяет указать тип носителя, для которого будет применяться указанный стиль. В качестве типов выступают различные устройства, например, принтер, КПК, монитор и др.</p>
+    <table class="table1">
+        <tr>
+            <th>Тип</th>
+            <th>Описание</th>
+        </tr>
+        <tr>
+            <td>all</td>
+            <td>Все типы. Это значение используется по умолчанию.</td>
+        </tr>
+        <tr>
+            <td>aural</td>
+            <td>Речевые синтезаторы, а также программы для воспроизведения текста вслух. Сюда, например, можно отнести речевые браузеры.</td>
+        </tr>
+        <tr>
+            <td>braille</td>
+            <td>Устройства, основанные на системе Брайля, которые предназначены для слепых людей.</td>
+        </tr>
+        <tr>
+            <td>handheld</td>
+            <td>Наладонные компьютеры и аналогичные им аппараты.</td>
+        </tr>
+        <tr>
+            <td>print</td>
+            <td>Печатающие устройства вроде принтера.</td>
+        </tr>
+        <tr>
+            <td>projection</td>
+            <td>Проектор.</td>
+        </tr>
+        <tr>
+            <td>screen</td>
+            <td>Экран монитора.</td>
+        </tr>
+        <tr>
+            <td>tv</td>
+            <td>Телевизор.</td>
+        </tr>
+    </table>
+    <br>
+    <p>Синтаксис</p>
+    <pre class="brush:css">
+    @media тип1 [, тип2] {
+      Описание стиля 
+    }
+    </pre>
+    <p>После ключевого слова @media идет один или несколько типов носителя, перечисленных в табл. 1; если их больше одного, то они разделяются между собой запятой. После чего следуют обязательные фигурные скобки, внутри которых идет обычное описание стилевых правил.</p>
+    <br>
+    <h2>Пример задания стилей под определенные размеры экрана браузера</h2>
+    <p>Синтаксис под определенную ширину экрана:</p>
+    <pre class="brush:css">
+    @media screen and (min-width: ...px) and (max-width: ...px) {
+      Описание стиля, который будет применяться только при размере экрана, заданном в правиле
+    }
+    </pre>
+</div>
+
+<div id="c4">
+    <p>Иногда требуется сделать на сайте какие-нибудь геометрические фигуры. Быстрее и правильнее делать их с помощью CSS. Если в будущем придется, к примеру, поменять их цвет, то фигуры, сделланные картинками, придется перерисовывать. Фигуры, сделанные с помощью CSS, изменяются секундными правками файла стилей.</p>
+
+    <h3>Квадрат</h3>
+
+    <img src="/img/1.png" alt=""><br>
+    <pre class="brush:css">
+    #square {
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+    </pre>
+
+    <h3>Прямоугольник</h3>
+
+    <img src="/img/2.png" alt=""><br>
+    <pre class="brush:css">
+    #rectangle {
+        width: 200px;
+        height: 100px;
+        background: red;
+    }
+    </pre>
+
+    <h3>Круг</h3>
+
+    <img src="/img/3.png" alt=""><br>
+    <pre class="brush:css">
+    #circle {
+        width: 100px;
+        height: 100px;
+        background: red;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+    }
+    </pre>
+
+    <h3>Овал</h3>
+
+    <img src="/img/4.png" alt=""><br>
+    <pre class="brush:css">
+    #oval {
+        width: 200px;
+        height: 100px;
+        background: red;
+        -moz-border-radius: 100px / 50px;
+        -webkit-border-radius: 100px / 50px;
+        border-radius: 100px / 50px;
+    }
+    </pre>
+
+    <h3>Треугольник вверх</h3>
+
+    <img src="/img/5.png" alt=""><br>
+    <pre class="brush:css">
+    #triangle-up {
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 100px solid red;
+    }
+    </pre>
+
+    <h3>Треугольник вниз</h3>
+
+    <img src="/img/6.png" alt=""><br>
+    <pre class="brush:css">
+    #triangle-down {
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-top: 100px solid red;
+    }
+    </pre>
+
+    <h3>Треугольник налево</h3>
+
+    <img src="/img/7.png" alt=""><br>
+    <pre class="brush:css">
+    #triangle-left {
+        width: 0;
+        height: 0;
+        border-top: 50px solid transparent;
+        border-right: 100px solid red;
+        border-bottom: 50px solid transparent;
+    }
+    </pre>
+
+    <h3>Треугольник направо</h3>
+
+    <img src="/img/8.png" alt=""><br>
+    <pre class="brush:css">
+    #triangle-right {
+        width: 0;
+        height: 0;
+        border-top: 50px solid transparent;
+        border-left: 100px solid red;
+        border-bottom: 50px solid transparent;
+    }
+    </pre>
+
+    <h3>Треугольник в левом верхнем углу</h3>
+
+    <img src="/img/9.png" alt=""><br>
+    <pre class="brush:css">
+    #triangle-topleft {
+        width: 0;
+        height: 0;
+        border-top: 100px solid red; 
+        border-right: 100px solid transparent;          
+    }
+    </pre>
+
+    <h3>Треугольник в правом верхнем углу</h3>
+
+    <img src="/img/10.png" alt=""><br>
+    <pre class="brush:css">
+    #triangle-topright {
+        width: 0;
+        height: 0;
+        border-top: 100px solid red; 
+        border-left: 100px solid transparent;    
+    }
+    </pre>
+
+    <h3>Треугольник в левом нижнем углу</h3>
+
+    <img src="/img/11.png" alt=""><br>
+    <pre class="brush:css">
+    #triangle-bottomleft {
+        width: 0;
+        height: 0;
+        border-bottom: 100px solid red; 
+        border-right: 100px solid transparent;  
+    }
+    </pre>
+
+    <h3>Треугольник в правом нижнем углу</h3>
+
+    <img src="/img/12.png" alt=""><br>
+    <pre class="brush:css">
+    #triangle-bottomright {
+        width: 0;
+        height: 0;
+        border-bottom: 100px solid red; 
+        border-left: 100px solid transparent;
+    }
+    </pre>
+
+    <h3>Параллелограмм</h3>
+
+    <img src="/img/13.png" alt=""><br>
+    <pre class="brush:css">
+    #parallelogram {
+        width: 150px;
+        height: 100px;
+        -webkit-transform: skew(20deg);
+           -moz-transform: skew(20deg);
+             -o-transform: skew(20deg);
+        background: red;
+    }
+    </pre>
+
+    <h3>Трапеция</h3>
+
+    <img src="/img/14.png" alt=""><br>
+    <pre class="brush:css">
+    #trapezoid {
+        border-bottom: 100px solid red;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        height: 0;
+        width: 100px;
+    }
+    </pre>
+
+    <h3>Звезда (6-конечная)</h3>
+
+    <img src="/img/15.png" alt=""><br>
+    <pre class="brush:css">
+    #star-six {
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 100px solid red;
+        position: relative;
+    }
+    #star-six:after {
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-top: 100px solid red;
+        position: absolute;
+        content: "";
+        top: 30px;
+        left: -50px;
+    }
+    </pre>
+
+    <h3>Звезда (5-конечная)</h3>
+
+    <img src="/img/16.png" alt=""><br>
+    <pre class="brush:css">
+    #star-five {
+       margin: 50px 0;
+       position: relative;
+       display: block;
+       color: red;
+       width: 0px;
+       height: 0px;
+       border-right:  100px solid transparent;
+       border-bottom: 70px  solid red;
+       border-left:   100px solid transparent;
+       -moz-transform:    rotate(35deg);
+       -webkit-transform: rotate(35deg);
+       -ms-transform:     rotate(35deg);
+       -o-transform:      rotate(35deg);
+    }
+    #star-five:before {
+       border-bottom: 80px solid red;
+       border-left: 30px solid transparent;
+       border-right: 30px solid transparent;
+       position: absolute;
+       height: 0;
+       width: 0;
+       top: -45px;
+       left: -65px;
+       display: block;
+       content: '';
+       -webkit-transform: rotate(-35deg);
+       -moz-transform:    rotate(-35deg);
+       -ms-transform:     rotate(-35deg);
+       -o-transform:      rotate(-35deg);
+       
+    }
+    #star-five:after {
+       position: absolute;
+       display: block;
+       color: red;
+       top: 3px;
+       left: -105px;
+       width: 0px;
+       height: 0px;
+       border-right: 100px solid transparent;
+       border-bottom: 70px solid red;
+       border-left: 100px solid transparent;
+       -webkit-transform: rotate(-70deg);
+       -moz-transform:    rotate(-70deg);
+       -ms-transform:     rotate(-70deg);
+       -o-transform:      rotate(-70deg);
+       content: '';
+    }
+    </pre>
+
+    <h3>Пятиугольник</h3>
+
+    <img src="/img/17.png" alt=""><br>
+    <pre class="brush:css">
+    #pentagon {
+        position: relative;
+        width: 54px;
+        border-width: 50px 18px 0;
+        border-style: solid;
+        border-color: red transparent;
+    }
+    #pentagon:before {
+        content: "";
+        position: absolute;
+        height: 0;
+        width: 0;
+        top: -85px;
+        left: -18px;
+        border-width: 0 45px 35px;
+        border-style: solid;
+        border-color: transparent transparent red;
+    }
+    </pre>
+
+    <h3>Шестиугольник</h3>
+
+    <img src="/img/18.png" alt=""><br>
+    <pre class="brush:css">
+    #hexagon {
+        width: 100px;
+        height: 55px;
+        background: red;
+        position: relative;
+    }
+    #hexagon:before {
+        content: "";
+        position: absolute;
+        top: -25px; 
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 25px solid red;
+    }
+    #hexagon:after {
+        content: "";
+        position: absolute;
+        bottom: -25px; 
+        left: 0;
+        width: 0;
+        height: 0;
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-top: 25px solid red;
+    }
+    </pre>
+
+    <h3>Восьмиугольник</h3>
+
+    <img src="/img/19.png" alt=""><br>
+    <pre class="brush:css">
+    #octagon {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: relative;
+    }
+     
+    #octagon:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;    
+        border-bottom: 29px solid red;
+        border-left: 29px solid #eee;
+        border-right: 29px solid #eee;
+        width: 42px;
+        height: 0;
+    }
+     
+    #octagon:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;    
+        border-top: 29px solid red;
+        border-left: 29px solid #eee;
+        border-right: 29px solid #eee;
+        width: 42px;
+        height: 0;
+    }
+    </pre>
+
+    <h3>Сердечко</h3>
+
+    <img src="/img/20.png" alt=""><br>
+    <pre class="brush:css">
+    #heart {
+        position: relative;
+        width: 100px;
+        height: 90px;
+    }
+    #heart:before,
+    #heart:after {
+        position: absolute;
+        content: "";
+        left: 50px;
+        top: 0;
+        width: 50px;
+        height: 80px;
+        background: red;
+        -moz-border-radius: 50px 50px 0 0;
+        border-radius: 50px 50px 0 0;
+        -webkit-transform: rotate(-45deg);
+           -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+             -o-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+        -webkit-transform-origin: 0 100%;
+           -moz-transform-origin: 0 100%;
+            -ms-transform-origin: 0 100%;
+             -o-transform-origin: 0 100%;
+                transform-origin: 0 100%;
+    }
+    #heart:after {
+        left: 0;
+        -webkit-transform: rotate(45deg);
+           -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+             -o-transform: rotate(45deg);
+                transform: rotate(45deg);
+        -webkit-transform-origin: 100% 100%;
+           -moz-transform-origin: 100% 100%;
+            -ms-transform-origin: 100% 100%;
+             -o-transform-origin: 100% 100%;
+                transform-origin :100% 100%;
+    }
+    </pre>
+
+    <h3>Знак бесконечности</h3>
+
+    <img src="/img/21.png" alt=""><br>
+    <pre class="brush:css">
+    #infinity {
+        position: relative;
+        width: 212px;
+        height: 100px;
+    }
+     
+    #infinity:before,
+    #infinity:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60px;
+        height: 60px;    
+        border: 20px solid red;
+        -moz-border-radius: 50px 50px 0 50px;
+             border-radius: 50px 50px 0 50px;
+        -webkit-transform: rotate(-45deg);
+           -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+             -o-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+    }
+     
+    #infinity:after {
+        left: auto;
+        right: 0;
+        -moz-border-radius: 50px 50px 50px 0;
+             border-radius: 50px 50px 50px 0;
+        -webkit-transform:rotate(45deg);
+           -moz-transform:rotate(45deg);
+            -ms-transform:rotate(45deg);
+             -o-transform:rotate(45deg);
+                transform:rotate(45deg);
+    }
+    </pre>
+</div>
