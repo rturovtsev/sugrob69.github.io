@@ -13,16 +13,16 @@ $( document ).ready(function() {
         var tem, temlink;
 
         switch (link.charAt(0)) {
-            case 'j':
+            case 'q':
                 tem = "jquery.html";
                 break;
-            case 'js':
+            case 'j':
                 tem = "js.html";
                 break;
-            case 'html':
+            case 'h':
                 tem = "html.html";
                 break;
-            case 'css':
+            case 'c':
                 tem = "css.html";
                 break;
         }
