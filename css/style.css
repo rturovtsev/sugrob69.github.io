@@ -29,7 +29,7 @@ header {height: 83px; text-align: right;}
 	.top_content {background-color:  #008d83; height: 84px;}
 		.breadcrumbs {display: table-cell; height: 84px; max-width: 650px; vertical-align: middle; padding-left: 25px;}
 			.breadcrumbs a {color: #f5f5f5; font-size: 17px;}
-	.content {padding: 20px 0; color: #fff;}
+	.content {padding: 20px 20px; color: #fff;}
 
 	#t_menu li {cursor: pointer;}
 
