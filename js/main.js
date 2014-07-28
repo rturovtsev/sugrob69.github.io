@@ -26,6 +26,12 @@ $( document ).ready(function() {
             case 'c':
                 tem = "css.html";
                 break;
+            case 's':
+                tem = "smarty.html";
+                break;
+            case 'p':
+                tem = "plagins.html";
+                break;
         }
 
         temlink = tem + " #" + link;

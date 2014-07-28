@@ -1,0 +1,44 @@
+<div id="t_menu">
+  <ul>
+    <li class="s1">Полезные ключи для переменных в Smarty</li>
+    <li class="s2">Определение последнего элемента в цикле с помощью Smarty</li>
+    <li class="s3">Создание элемента после определенного повтора foreach</li>
+  </ul>
+</div>
+
+<div id="s1">
+  <table class="table1">
+  <tr>
+    <td>{$item.TITLE|escape:html}</td> <td>экранировать теги в тексте, выведутся текстом</td>
+  </tr>
+  <tr>
+    <td>{$item.BODY|strip_tags:true}</td> <td>убрать все html тэги</td>
+  </tr>
+  <tr>
+    <td>{$comment.OBJECT.TITLE|truncate:40:"..."}</td> <td>ограничение текста по символам</td>
+  </tr>
+  <tr>
+    <td>{$initiative.FINISH_DATE|date_format:"%m.%d.%Y"}</td> <td>формат вывода даты</td>
+  </tr>
+  </table>
+</div>
+
+<div id="s2">
+  <p>Иногда требуется определить последний элемент в выводе цикла Smarty, чтобы присвоить ему какой-нибудь особенный класс или, к примеру, не ставить после него запятую. Сделать это можно так:</p>
+
+  <pre class="brush:html">
+  {foreach from=$article.TAGS item=tag name=tart}
+      <a href="#{$tag.PP_TAG_ID}">{$tag.TITLE}</a>{if !$smarty.foreach.tart.last}, {/if}
+  {/foreach}
+  </pre>
+</div>
+
+<div id="s3">
+  <p>Иногда требуется с помощью шаблонизатора Smarty создать элемент после определенного повтора foreach. Например, после каждого четвертого элемента вывода, при этом он не должен быть последним, вставлять див с чертой. Делается это вот так:</p>
+
+  <pre class="brush:html">
+  {if $smarty.foreach.3new.iteration %4 == 0 && !$smarty.foreach.3new.last} 
+      <div class="main_news_line"></div>
+  {/if}
+  </pre>
+</div>
