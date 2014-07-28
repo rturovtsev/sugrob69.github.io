@@ -9,7 +9,7 @@ $( document ).ready(function() {
                 // произошла ошибка
                 alert('Произошла ошибка.');
             } else {
-                var menu = $(data).find('#t_menu').html();
+                var menu = $(data.responseText).find('#t_menu').html();
                 $('.content').html(menu);
             }
         }
