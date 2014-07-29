@@ -34,6 +34,12 @@ header {height: 83px; text-align: right;}
 
 	#t_menu li {cursor: pointer;}
 
+	.table1 {margin: 0.0px 0.0px 0.0px 5.0px; border-collapse: collapse;}
+		.table1 th {background: #dfdfdf; border: 1px solid #dfdfdf !important; padding: 8px 20px 10px 20px; color: black;}
+		.table1 td {border: 1px solid #cccccc !important; padding: 8px 20px 10px 20px;}
+		.table1 tr:hover {background: #F5F3F3;}
+			.table1 tr:hover td {color: black;}
+
 footer {height: 100px; margin-top: -100px; color: #fefffd; background: rgb(56,0,125); /* Old browsers */
 	background: -moz-linear-gradient(45deg,  rgba(56,0,125,1) 0%, rgba(143,51,196,1) 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgba(56,0,125,1)), color-stop(100%,rgba(143,51,196,1))); /* Chrome,Safari4+ */
