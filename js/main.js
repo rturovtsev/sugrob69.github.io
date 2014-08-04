@@ -1,4 +1,4 @@
-hljs.initHighlightingOnLoad();
+//hljs.initHighlightingOnLoad();
 
 $( document ).ready(function() {
     //загружаем первоначальное меню от jquery
@@ -51,12 +51,8 @@ $( document ).ready(function() {
 
         //загрузка и подсветка контента
         $('.content').load(temlink, function(){
-            $('pre').each(function(i, block) {
-                hljs.highlightBlock(block);
-            });
-
             $('pre code').each(function(i, block) {
-                hljs.highlightBlock(block);
+                Prism.highlightElement(block);
             });
         });
 

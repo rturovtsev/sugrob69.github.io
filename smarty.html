@@ -26,21 +26,23 @@
 <div id="s2">
   <p>Иногда требуется определить последний элемент в выводе цикла Smarty, чтобы присвоить ему какой-нибудь особенный класс или, к примеру, не ставить после него запятую. Сделать это можно так:</p>
 
-  <pre class="brush:html">
-  {foreach from=$article.TAGS item=tag name=tart}
-      <a href="#{$tag.PP_TAG_ID}">{$tag.TITLE}</a>{if !$smarty.foreach.tart.last}, {/if}
-  {/foreach}
-  </pre>
+<pre class="language-markup">
+<code class="language-markup">
+{foreach from=$article.TAGS item=tag name=tart}
+    &lt;a href="#{$tag.PP_TAG_ID}"&gt;{$tag.TITLE}&lt;/a&gt;{if !$smarty.foreach.tart.last}, {/if}
+{/foreach}
+</code>
+</pre>
 </div>
 
 <div id="s3">
   <p>Иногда требуется с помощью шаблонизатора Smarty создать элемент после определенного повтора foreach. Например, после каждого четвертого элемента вывода, при этом он не должен быть последним, вставлять див с чертой. Делается это вот так:</p>
 
-  <pre>
-    <code class="html">
-      {if $smarty.foreach.3new.iteration %4 == 0 && !$smarty.foreach.3new.last} 
-          <div class="main_news_line"></div>
-      {/if}
-    </code>
-  </pre>
+<pre class="language-markup">
+<code class="language-markup">
+{if $smarty.foreach.3new.iteration %4 == 0 && !$smarty.foreach.3new.last} 
+    &lt;div class="main_news_line"&gt;&lt;/div&gt;
+{/if}
+</code>
+</pre>
 </div>
