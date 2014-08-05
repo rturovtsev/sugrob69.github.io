@@ -10,52 +10,60 @@
   <h3>Подключение плагина</h3>
 
   <p>Код HTML для подключения файлов плагина</p>
-  <pre class="brush:html">
-  <link type="text/css" rel="stylesheet" href="css/tinyscrollbar.css"/>
+<pre class="language-markup">
+<code class="language-markup">
+&lt;link type="text/css" rel="stylesheet" href="css/tinyscrollbar.css"/&gt;
 
-  <script type="text/javascript" src="js/jquery.js" ></script>
-  <script type="text/javascript" src="js/jquery.tinyscrollbar.min.js"></script>
-  </pre>
+&lt;script type="text/javascript" src="js/jquery.js" &gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/jquery.tinyscrollbar.min.js"&gt;&lt;/script&gt;
+</code>
+</pre>
 
 
   <p>Необходимая разметка HTML на странице</p>
-  <pre class="brush:html">
-  <div id="scrollbarY"> <!-- id или class данного прокручиваемого контента--> 
-    <div class="scrollbar"> <!-- контейнер скролла -->
-      <div class="track"> <!-- трэк, по которому ездит скролл -->
-        <div class="thumb"> <!-- сам скролл -->
-          <div class="end"></div> <!-- блок для создания скругленных углов у скролла -->
-        </div>
-      </div>
-    </div>
-    <div class="viewport"> <!-- контейнер с заданными размерами, в котором будет показываться контент -->
-      <div class="overview"> <!-- скроллящийся контейнер -->
-        Вот тут сам скроллящийся контент
-      </div>
-    </div>
-  </div>
-  </pre>
+<pre class="language-markup">
+<code class="language-markup">
+&lt;div id="scrollbarY"&gt; &lt;!-- id или class данного прокручиваемого контента--&gt;
+&lt;div class="scrollbar"&gt; &lt;!-- контейнер скролла --&gt;
+  &lt;div class="track"&gt; &lt;!-- трэк, по которому ездит скролл --&gt;
+    &lt;div class="thumb"&gt; &lt;!-- сам скролл --&gt;
+      &lt;div class="end"&gt;&lt;/div&gt; &lt;!-- блок для создания скругленных углов у скролла --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="viewport"&gt; &lt;!-- контейнер с заданными размерами, в котором будет показываться контент --&gt;
+  &lt;div class="overview"&gt; &lt;!-- скроллящийся контейнер --&gt;
+    Вот тут сам скроллящийся контент
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
 
 
   <p>Примерный код CSS</p>
-  <pre class="brush:css">
-  #scrollbarY {margin: 20px 0 10px;}
-  #scrollbarY .viewport {width: 500px; height: 200px; overflow: hidden; position: relative;}
-  #scrollbarY .overview {list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0;}
-  #scrollbarY .scrollbar{background: transparent url(../images/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 15px;}
-  #scrollbarY .track {background: transparent url(../images/bg-scrollbar-trackend-y.png) no-repeat 0 100%; height: 100%; width:13px; position: relative; padding: 0 1px;}
-  #scrollbarY .thumb {background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px;}
-  #scrollbarY .thumb .end {background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat 50% 0; overflow: hidden; height: 5px; width: 25px;}
-  #scrollbarY .disable {display: none;}
-  </pre>
+<pre class="language-css">
+<code class="language-css">
+#scrollbarY {margin: 20px 0 10px;}
+#scrollbarY .viewport {width: 500px; height: 200px; overflow: hidden; position: relative;}
+#scrollbarY .overview {list-style: none; position: absolute; left: 0; top: 0; padding: 0; margin: 0;}
+#scrollbarY .scrollbar{background: transparent url(../images/bg-scrollbar-track-y.png) no-repeat 0 0; position: relative; background-position: 0 0; float: right; width: 15px;}
+#scrollbarY .track {background: transparent url(../images/bg-scrollbar-trackend-y.png) no-repeat 0 100%; height: 100%; width:13px; position: relative; padding: 0 1px;}
+#scrollbarY .thumb {background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat 50% 100%; height: 20px; width: 25px; cursor: pointer; overflow: hidden; position: absolute; top: 0; left: -5px;}
+#scrollbarY .thumb .end {background: transparent url(../images/bg-scrollbar-thumb-y.png) no-repeat 50% 0; overflow: hidden; height: 5px; width: 25px;}
+#scrollbarY .disable {display: none;}
+</code>
+</pre>
 
   <p>Инициализация скролла</p>
-  <pre class="brush:js">
-  <script type="text/javascript">
+  <pre class="language-markup">
+  <code class="language-markup">
+  &lt;script type="text/javascript"&gt;
   jQuery(document).ready(function(){
     jQuery('#scrollbarY').tinyscrollbar();  
   });
   </script>
+  </code>
   </pre>
 
   <p>При инициализации, можно передавать следующие параметры:</p>
@@ -93,21 +101,25 @@
   </table>
 
   <p>Пример инициализации с параметрами:</p>
-  <pre class="brush:js">
-  jQuery('#scrollbar').tinyscrollbar({ size: 100, sizethumb: 15 });            
-  </pre>
+<pre class="language-javascript">
+<code class="language-javascript">
+jQuery('#scrollbar').tinyscrollbar({ size: 100, sizethumb: 15 });
+</code>
+</pre>
 
   <h3>Метод tinyscrollbar_update</h3>
   <p>Для переинициализации скроллбара служит метод tinyscrollbar_update. Его нужно вызывать если динамически меняется контент внутри области с прокруткой или если изначально блок с прокруткой был невидим (display: none). Пример:</p>
 
-  <pre class="brush:js">
-  var oScrollbar = jQuery('#scrollbar');
-  oScrollbar.tinyscrollbar();
+<pre class="language-javascript">
+<code class="language-javascript">
+var oScrollbar = jQuery('#scrollbar');
+oScrollbar.tinyscrollbar();
 
-  //тут расположены команды, динамически меняющие контент
+//тут расположены команды, динамически меняющие контент
 
-  oScrollbar.tinyscrollbar_update();
-  </pre>
+oScrollbar.tinyscrollbar_update();
+</code>
+</pre>
 
   <p>Метод tinyscrollbar_update может принимать параметр, который отвечает за программную перемотку полосы прокрутки.</p>
 
@@ -135,14 +147,16 @@
   </table>
 
   <p>Например, если в HTML есть элемент с id="scrollbar-anchor", можно реализовать кнопку перемотки в определенную позицию:</p>
-  <pre class="brush:js">
-  var oScroll = $('#scrollbar');
-  oScroll.tinyscrollbar();
-    
-  //якорь для перемотки
-  $('#scrollbar-anchor').click(function(){
-    oScroll.tinyscrollbar_update(50);
-    return false;
-  });
-  </pre>
+<pre class="language-javascript">
+<code class="language-javascript">
+var oScroll = $('#scrollbar');
+oScroll.tinyscrollbar();
+
+//якорь для перемотки
+$('#scrollbar-anchor').click(function(){
+oScroll.tinyscrollbar_update(50);
+return false;
+});
+</code>
+</pre>
 </div>

@@ -52,3 +52,5 @@ footer {height: 100px; margin-top: -100px; color: #fefffd; background: rgb(56,0,
 	footer p {margin: 0;}
 	footer .f_txt {display: table-cell; height: 100px; vertical-align: middle; padding: 0 25px;}
 	footer .right {max-width: calc(100% - 162px);}
+
+#loader {position: fixed; height: 100px; width: 100px; top: 50%; left: 50%; margin-left: -50px; margin-top: -50px; background: url(../img/loader.gif) 0 0 no-repeat;}

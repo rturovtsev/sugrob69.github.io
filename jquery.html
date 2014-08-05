@@ -154,19 +154,19 @@ var number_of_LI = jQuery('ul.some li').size();
     </div>
   </div>
   <script>
-    jQuery(document).ready(function($) {
+    (function() {
       $('#tab_btns > div').click(function(){
-      var data_id = $(this).attr('data-id');
-      $('#tab_btns > div').each(function(){
-          $(this).removeClass('active');
+          var data_id = $(this).attr('data-id');
+          $('#tab_btns > div').each(function(){
+              $(this).removeClass('active');
+          });
+          $('#tab_btns .btn'+data_id).addClass('active');
+          $('#cont .area').each(function(){
+              $(this).addClass('hide');
+          });
+          $('#cont .area_'+data_id).removeClass('hide');
       });
-      $('#tab_btns .btn'+data_id).addClass('active');
-      $('#cont .area').each(function(){
-          $(this).addClass('hide');
-      });
-      $('#cont .area_'+data_id).removeClass('hide');
-  });
-    });
+    })();
   </script>
 
   <p>Код JQuery</p>
@@ -284,7 +284,7 @@ $("div").height(maxHeight); //выставляем высоту всех бло�
   }
   </style>
   <script>
-      $(document).ready(function() {
+      (function() {
             $(function () {
       $('#demo-text').hide();
       $('#demo-link').click(function (e) {
@@ -306,7 +306,7 @@ $("div").height(maxHeight); //выставляем высоту всех бло�
         e.preventDefault();
       });
     });
-      });
+      })();
   </script>
 
 

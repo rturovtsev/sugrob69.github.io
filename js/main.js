@@ -1,55 +1,58 @@
-$( document ).ready(function() {
+/*global $, jQuery, alert, console, Prism*/
+
+$(document).ready(function () {
+    'use strict';
+
     //загружаем первоначальное меню от jquery
-    $('.content').load('jquery.html #t_menu');  
+    getData('t_menu', 'jquery.html');
 
 
-    //подкружаем меню при клике в главном меню
-    $('li', '.nav').on('click', function(){  
+    //подгружаем меню при клике в главном меню
+    $('li', '.nav').on('click', function () {
         $(this)
             .addClass('active')
             .siblings()
             .removeClass('active');
 
         var link = $(this).attr('data-src');
-        $('.content').load(link + ' #t_menu', function(){
-            var name = $('li:first' , '#t_menu').text();
+
+        getData('t_menu', link, function () {
+            var name = $('li:first', '#t_menu').text();
             $('a', '.breadcrumbs').text(name);
         });
     });
 
 
     //подгрузка контента при клике в дополнительном меню
-    $('#content').on('click', '#t_menu li', function(){
-        var link = $(this).attr('class');
-        var name = $(this).text();
-        var tem, temlink;
+    $('#content').on('click', '#t_menu li', function () {
+        var sel = $(this).attr('class'),
+            name = $(this).text(),
+            link;
 
-        switch (link.charAt(0)) {
-            case 'q':
-                tem = "jquery.html";
-                break;
-            case 'j':
-                tem = "js.html";
-                break;
-            case 'h':
-                tem = "html.html";
-                break;
-            case 'c':
-                tem = "css.html";
-                break;
-            case 's':
-                tem = "smarty.html";
-                break;
-            case 'p':
-                tem = "plagins.html";
-                break;
+        switch (sel.charAt(0)) {
+        case 'q':
+            link = "jquery.html";
+            break;
+        case 'j':
+            link = "js.html";
+            break;
+        case 'h':
+            link = "html.html";
+            break;
+        case 'c':
+            link = "css.html";
+            break;
+        case 's':
+            link = "smarty.html";
+            break;
+        case 'p':
+            link = "plagins.html";
+            break;
         }
 
-        temlink = tem + " #" + link;
-
         //загрузка и подсветка контента
-        $('.content').load(temlink, function(){
-            $('pre code').each(function(i, block) {
+        getData(sel, link, function () {
+            $('pre code').each(function (i, block) {
                 Prism.highlightElement(block);
             });
         });
@@ -58,3 +61,35 @@ $( document ).ready(function() {
         $('a', '.breadcrumbs').text(name);
     });
 });
+
+
+
+
+function getData(sel, link, f) {
+    'use strict';
+
+    $('body').append('<div id="loader"></div>');
+
+    $.ajax({
+        type: 'GET',
+        dataType: "html",
+        url: link,
+        success: function (response) {
+            if (typeof (response) === 'undefined' || !response) {
+                // произошла ошибка
+                console.log('произошла ошибка');
+            } else {
+                // вставляем
+                var result = $('<div></div>').append(response).find('#' + sel).html();
+                var content = $('<div id="' + sel + '"></div>').append(result);
+                $('.content').hide().html(content).fadeIn(100);
+                //callback function
+                if (typeof (f) === "function") {
+                    f();
+                }
+            }
+
+            $('#loader').remove();
+        }
+    });
+}
