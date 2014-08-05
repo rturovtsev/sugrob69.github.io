@@ -1,5 +1,3 @@
-//hljs.initHighlightingOnLoad();
-
 $( document ).ready(function() {
     //загружаем первоначальное меню от jquery
     $('.content').load('jquery.html #t_menu');  
