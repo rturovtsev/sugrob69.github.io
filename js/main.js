@@ -63,8 +63,6 @@ $(document).ready(function () {
 });
 
 
-
-
 function getData(sel, link, f) {
     'use strict';
 
@@ -80,9 +78,9 @@ function getData(sel, link, f) {
                 console.log('произошла ошибка');
             } else {
                 // вставляем
-                var result = $('<div></div>').append(response).find('#' + sel).html();
-                var content = $('<div id="' + sel + '"></div>').append(result);
-                $('.content').hide().html(content).fadeIn(100);
+                var result = $('<div></div>').append(response).find('#' + sel).html(),
+                    content = $('<div id="' + sel + '"></div>').append(result);
+                $('.content').hide().html(content).fadeIn(150);
                 //callback function
                 if (typeof (f) === "function") {
                     f();
