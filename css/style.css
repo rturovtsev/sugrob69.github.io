@@ -11,7 +11,8 @@ header {height: 83px; text-align: right;}
 		.search .inp_search:input-placeholder {color: #444444;}
 
 #sidebar {position: absolute; top: 83px; left: 0; width: 200px; bottom: 0;}
-	.sidebar_nav {padding: 20px 10px 30px;}
+	.sidebar_nav {position: absolute; top: 0; left: 0; padding: 20px 10px 30px;}
+    .sidebar_nav.fixed {position: fixed;}
 	.sidebar_nav a {display: block; vertical-align: top; margin-bottom: 25px; font-size: 14px; color: #ebebeb;}
 	.sidebar_nav a .icon {display: inline-block; width: 17px; height: 17px; margin-right: 5px;}
 		.sidebar_nav .a_mail .icon {background: url(../img/ico_nav.png) -26px 3px no-repeat;}
@@ -20,7 +21,8 @@ header {height: 83px; text-align: right;}
 
 #content {min-height: calc(100% - 83px); background: #1c1c1c; box-shadow: 0px 0px 100px #111010; padding-bottom: 100px;}
 	.menu {height: 84px;}
-		.nav-pills>li>a {width: 100px; height: 84px; padding-top: 32px; text-align: center; border-radius: 0; background: #222222; color: #555; cursor: pointer;}
+		.nav-pills>li>a {width: 100px; height: 84px; padding-top: 32px; text-align: center; border-radius: 0; background: #222222; color: #555; cursor: pointer; -webkit-transition: all 0.2s ease-out 0s; -moz-transition: all 0.2s ease-out 0s; -o-transition: all 0.2s ease-out 0s; transition: all 0.2s ease-out 0s;}
+        .nav-pills>li>a:active {text-shadow: 0px 0px 2px #fff;}
 		.nav>li>a:hover, 
 		.nav>li>a:focus {background: #262626;}
 		.nav-pills>li.active>a, 

@@ -60,6 +60,25 @@ $(document).ready(function () {
         //обновляем заголовок
         $('a', '.breadcrumbs').text(name);
     });
+
+
+    //скролл сайдбара
+    (function () {
+        var sideTopStart = $('.sidebar_nav').offset().top;
+        $(window).on('scroll', function () {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop > sideTopStart) {
+                $('.sidebar_nav').addClass('fixed');
+            } else {
+                $('.sidebar_nav').removeClass('fixed');
+            }
+        });
+
+    })();
+
+
+    //добавить в избранное
+    $('.a_fvrt', '#sidebar').on('click', add_favorite);
 });
 
 
@@ -90,4 +109,35 @@ function getData(sel, link, f) {
             $('#loader').remove();
         }
     });
+}
+
+
+// Добавить в Избранное
+function add_favorite(a) {
+  title=document.title;
+  url=document.location;
+  try {
+    // Internet Explorer
+    window.external.AddFavorite(url, title);
+  }
+  catch (e) {
+    try {
+      // Mozilla
+      window.sidebar.addPanel(title, url, "");
+    }
+    catch (e) {
+      // Opera
+      if (typeof(opera)=="object") {
+        a.rel="sidebar";
+        a.title=title;
+        a.url=url;
+        return true;
+      }
+      else {
+        // Unknown
+        alert('Нажмите клавиши Ctrl и D чтобы добавить страницу в закладки');
+      }
+    }
+  }
+  return false;
 }
