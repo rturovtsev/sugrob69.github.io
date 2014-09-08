@@ -3,8 +3,10 @@
     <li class="s1">Полезные ключи для переменных в Smarty</li>
     <li class="s2">Определение последнего элемента в цикле с помощью Smarty</li>
     <li class="s3">Создание элемента после определенного повтора foreach</li>
+    <li class="s3">Вывод переменной из адресной строки после символа "?"</li>
   </ul>
 </div>
+
 
 <div id="s1">
   <table class="table1">
@@ -43,6 +45,19 @@
 {if $smarty.foreach.3new.iteration %4 == 0 && !$smarty.foreach.3new.last} 
     &lt;div class="main_news_line"&gt;&lt;/div&gt;
 {/if}
+</code>
+</pre>
+</div>
+
+<div id="s3">
+  <p>Иногда требуется получить значенин переменной, которая содержится в адресной строке. Сделать это можно так:</p>
+  <p>Пример адресной строки: http:///mysite.ru/?sort_by=status<br>
+    Необзодимо вывести sort_by. Сделать это можно так:
+  </p>
+
+<pre class="language-markup">
+<code class="language-markup">
+{$smarty.get.sort_by}
 </code>
 </pre>
 </div>
