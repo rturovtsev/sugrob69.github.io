@@ -2,6 +2,7 @@
   <ul>
     <li class="j1">Полезные функции на JavaScript</li>
     <li class="j2">Определение мобильного браузера</li>
+    <li class="j3">Покрытие кода тестами</li>
   </ul>
 </div>
 
@@ -70,6 +71,71 @@ if(isMobile.any()){
 if(isMobile.iOS()){
     //действие, которое нужно сделать, если браузер iOS
 }
+</code>
+</pre>
+</div>
+
+<div id="j3">
+<p>Создаем Html файл с функцией, которую необходимо протестировать:</p>
+<pre class="language-html">
+<code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;!-- подключаем стили Mocha, для отображения результатов --&gt;
+    &lt;link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/mocha/1.13.0/mocha.css"&gt;
+    &lt;!-- подключаем библиотеку Mocha --&gt;
+    &lt;script src="http://cdnjs.cloudflare.com/ajax/libs/mocha/1.13.0/mocha.js"&gt;&lt;/script&gt;
+    &lt;!-- настраиваем Mocha: предстоит BDD‐тестирование --&gt;
+    &lt;script&gt; mocha.setup('bdd'); &lt;/script&gt;
+    &lt;!-- подключаем chai --&gt;
+    &lt;script src="http://cdnjs.cloudflare.com/ajax/libs/chai/1.9.0/chai.js"&gt;&lt;/script&gt;
+    &lt;!-- в chai есть много всего, выносим assert в глобальную область --&gt;
+    &lt;script&gt; var assert = chai.assert; &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script&gt;
+        function fib(n) {
+            return  ( n <= 1) ? n : fib(n-1) + fib(n-2);
+        }
+    &lt;/script&gt;
+    &lt;!-- в этом скрипте находятся спеки --&gt;
+    &lt;script src="test.js"&gt;&lt;/script&gt;
+    &lt;!-- в элементе с id="mocha" будут результаты тестов --&gt;
+    &lt;div id="mocha"&gt;&lt;/div&gt;
+    &lt;!-- запустить тесты! --&gt;
+    &lt;script&gt; mocha.run(); &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+<br>
+
+<p>Файл test.js с нашими тестами:</p>
+<pre class="language-javascript">
+<code class="language-javascript">
+if(isMobile.any()){
+    //действие, которое нужно сделать, если браузер мобильный
+}
+</code>
+</pre>
+
+<br>
+
+<p>Проверяем на устройство</p>
+<pre class="language-javascript">
+<code class="language-javascript">
+describe("fib", function() {
+    it("находит n‐е число фибоначи", function() {
+        assert.equal( fib(7), 13);
+    });
+
+    it("находит n‐е число фибоначи", function() {
+        assert.equal( fib(3), 2);
+    });
+});
 </code>
 </pre>
 </div>
